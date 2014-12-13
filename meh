@@ -16,5 +16,6 @@
 require __DIR__.'/start.php';
 
 $cli = new Symfony\Component\Console\Application();
+$cli->add($app['GrahamCampbell\Meh\Commands\ShortenCommand']);
 $cli->add($app['GrahamCampbell\Meh\Commands\RemoveCommand']);
 $cli->run();

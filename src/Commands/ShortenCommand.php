@@ -17,10 +17,10 @@ namespace GrahamCampbell\Meh\Commands;
 use InvalidArgumentException;
 use Symfony\Component\Console\Input\InputArgument;
 
-class RemoveCommand extends AbstractCommand
+class ShortenCommand extends AbstractCommand
 {
-    protected $name = 'remove';
-    protected $description = 'Remove the given ids from the database';
+    protected $name = 'shorten';
+    protected $description = 'Shorten the given urls';
 
     /**
      * Configures the command.
@@ -31,7 +31,7 @@ class RemoveCommand extends AbstractCommand
      */
     protected function configure()
     {
-        $this->addArgument('ids', InputArgument::IS_ARRAY, 'The ids to remove');
+        $this->addArgument('urls', InputArgument::IS_ARRAY, 'The urls to remove');
     }
 
     /**
@@ -41,21 +41,22 @@ class RemoveCommand extends AbstractCommand
      */
     protected function fire()
     {
-        if ($ids = $this->input->getArgument('ids')) {
-            foreach ($ids as $id) {
-                $this->remove($id);
+        if ($urls = $this->input->getArgument('urls')) {
+            foreach ($urls as $url) {
+                $this->shorten($url);
             }
         } else {
-            throw new InvalidArgumentException('You need to provide one or more ids to remove.');
+            throw new InvalidArgumentException('You need to provide one or more urls to shorten.');
         }
     }
 
-    protected function remove($id)
+    protected function shorten($url)
     {
-        if ($this->app['shortener']->remove($id)) {
-            $this->output->writeln("<info>'$id' was removed from the database.</info>");
+        if (filter_var($url, FILTER_VALIDATE_URL)) {
+            $short = $this->app['shortener']->short($url);
+            $this->output->writeln("<info>'$url' was sucessfully shortened to '$short'.</info>");
         } else {
-            $this->output->writeln("<error>'$id' was not found in the database.</error>");
+            $this->output->writeln("<error>'$url' is not a valid url.</error>");
         }
     }
 }
