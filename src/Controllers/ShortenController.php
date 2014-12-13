@@ -28,7 +28,7 @@ class ShortenController extends AbstractController
             return $this->error(['message'  => 'The Provided URL Was Invalid'], 400);
 		}
 
-        $short = $this->app['GrahamCampbell\Meh\Shortener']->short($url);
+        $short = $this->app['shortener']->short($url);
 
         return $this->success(['message'  => 'URL Shortened Successfully', 'url' => $short]);
     }

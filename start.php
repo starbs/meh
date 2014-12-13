@@ -14,21 +14,11 @@
 
 require __DIR__.'/vendor/autoload.php';
 $app = new Proton\Application();
+$app['Proton\Application'] = $app;
 
 extract(require __DIR__.'/config/app.php');
-
 $app['debug'] = $debug;
-
-$app['Proton\Application'] = function () use ($app) {
-	return $app;
-};
-
-$app['url'] = function () use ($url) {
-	return $url;
-};
-
-$app['hash'] = function () {
-	return new Hashids\Hashids('meh', 4);
-};
+$app['url'] = $url;
 
 require __DIR__.'/src/database.php';
+require __DIR__.'/src/bindings.php';

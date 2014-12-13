@@ -15,22 +15,17 @@
 namespace GrahamCampbell\Meh;
 
 use GrahamCampbell\Meh\Models\Url;
-use Proton\Application;
+use Hashids\Hashids;
 
 class Shortener
 {
-    protected $app;
+    protected $hash;
+    protected $url;
 
-    public function __construct(Application $app)
+    public function __construct(Hashids $hash, $url)
     {
-        $this->app = $app;
-    }
-
-    protected function url($id)
-    {
-        $id = $this->encode($id);
-
-        return $this->app['url'].'/'.$id;
+        $this->hash = $hash;
+        $this->url = $url;
     }
 
     public function short($full)
@@ -66,9 +61,16 @@ class Shortener
         }
     }
 
+    protected function url($id)
+    {
+        $id = $this->encode($id);
+
+        return $this->url.'/'.$id;
+    }
+
     protected function encode($id)
     {
-        return $this->app['hash']->encode($id);
+        return $this->hash->encode($id);
     }
 
     protected function decode($id)
@@ -76,7 +78,7 @@ class Shortener
         if (is_numeric($id)) {
             return (int) $id;
         } else {
-            return $this->app['hash']->decode($id);
+            return $this->hash->decode($id);
         }
     }
 }

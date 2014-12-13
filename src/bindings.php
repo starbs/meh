@@ -12,18 +12,10 @@
  * THE SOFTWARE.
  */
 
-namespace GrahamCampbell\Meh\Controllers;
+$app['hash'] = function () {
+    return new Hashids\Hashids('meh', 4);
+};
 
-class MainController extends AbstractController
-{
-    protected function fire()
-    {
-    	$url = $this->app['shortener']->full($this->args['id']);
-
-    	if ($url) {
-    		return $this->redirect($url);
-    	}
-
-    	return $this->error(['message' => 'Not Found'], 404);
-    }
-}
+$app['shortener'] = function () use ($app) {
+    return new GrahamCampbell\Meh\Shortener($app['hash'], $app['url']);
+};
