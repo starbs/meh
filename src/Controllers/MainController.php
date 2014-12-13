@@ -18,12 +18,12 @@ class MainController extends AbstractController
 {
     protected function fire()
     {
-    	$url = $this->app['shortener']->full($this->args['id']);
+        $url = $this->app['shortener']->full($this->args['id']);
 
-    	if ($url) {
-    		return $this->redirect($url);
-    	}
+        if ($url) {
+            return $this->redirect($url);
+        }
 
-    	return $this->error(['message' => 'Not Found'], 404);
+        return $this->error(['message' => 'Not Found'], 404);
     }
 }

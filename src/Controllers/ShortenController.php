@@ -24,9 +24,9 @@ class ShortenController extends AbstractController
             return $this->error(['message'  => 'No URL Provided'], 400);
         }
 
-		if (!filter_var($url, FILTER_VALIDATE_URL)) {
+        if (!filter_var($url, FILTER_VALIDATE_URL)) {
             return $this->error(['message'  => 'The Provided URL Was Invalid'], 400);
-		}
+        }
 
         $short = $this->app['shortener']->short($url);
 
