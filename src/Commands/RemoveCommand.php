@@ -1,7 +1,7 @@
 <?php
 
-/**
- * This file is part of Meh by Graham Campbell.
+/*
+ * This file is part of Starbs Meh by Graham Campbell.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -12,9 +12,10 @@
  * THE SOFTWARE.
  */
 
-namespace GrahamCampbell\Meh\Commands;
+namespace Starbs\Meh\Commands;
 
 use InvalidArgumentException;
+use Starbs\Console\Commands\AbstractCommand;
 use Symfony\Component\Console\Input\InputArgument;
 
 class RemoveCommand extends AbstractCommand

@@ -1,8 +1,8 @@
 #!/usr/bin/env php
 <?php
 
-/**
- * This file is part of Meh by Graham Campbell.
+/*
+ * This file is part of Starbs Meh by Graham Campbell.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -16,6 +16,6 @@
 require __DIR__.'/start.php';
 
 $cli = new Symfony\Component\Console\Application();
-$cli->add($app['GrahamCampbell\Meh\Commands\ShortenCommand']);
-$cli->add($app['GrahamCampbell\Meh\Commands\RemoveCommand']);
+$cli->add($app['Starbs\Meh\Commands\ShortenCommand']);
+$cli->add($app['Starbs\Meh\Commands\RemoveCommand']);
 $cli->run();

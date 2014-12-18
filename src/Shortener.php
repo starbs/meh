@@ -1,7 +1,7 @@
 <?php
 
-/**
- * This file is part of Meh by Graham Campbell.
+/*
+ * This file is part of Starbs Meh by Graham Campbell.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -12,10 +12,10 @@
  * THE SOFTWARE.
  */
 
-namespace GrahamCampbell\Meh;
+namespace Starbs\Meh;
 
-use GrahamCampbell\Meh\Models\Url;
 use Hashids\Hashids;
+use Starbs\Meh\Models\Url;
 
 class Shortener
 {
@@ -32,7 +32,7 @@ class Shortener
     {
         $hash = sha1($full);
 
-        $model = URL::where('hash', $hash)->first();
+        $model = Url::where('hash', $hash)->first();
 
         if (!$model) {
             $model = Url::create(['hash' => $hash, 'full' => $full]);

@@ -1,7 +1,7 @@
 <?php
 
-/**
- * This file is part of Meh by Graham Campbell.
+/*
+ * This file is part of Starbs Meh by Graham Campbell.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -17,5 +17,5 @@ $app['hash'] = function () {
 };
 
 $app['shortener'] = function () use ($app) {
-    return new GrahamCampbell\Meh\Shortener($app['hash'], $app['url']);
+    return new Starbs\Meh\Shortener($app['hash'], $app['url']);
 };
