@@ -30,6 +30,10 @@ class ShortenController extends AbstractController
 
         $short = $this->app['shortener']->short($url);
 
+        if ($this->input('sharex')) {
+            return $this->raw($short, 'text/plain');
+        }
+
         return $this->success(['message'  => 'URL Shortened Successfully', 'url' => $short]);
     }
 }

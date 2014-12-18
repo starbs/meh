@@ -67,6 +67,14 @@ abstract class AbstractController
         return $this->response;
     }
 
+    protected function raw($data, $mime)
+    {
+        $this->response->headers->add(['Content-Type' => $mime]);
+        $this->response->setContent($data);
+
+        return $this->response;
+    }
+
     protected function input($key)
     {
         return $this->request->request->get($key);
