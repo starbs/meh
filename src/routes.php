@@ -1,7 +1,7 @@
 <?php
 
-/**
- * This file is part of Meh by Graham Campbell.
+/*
+ * This file is part of Starbs Meh by Graham Campbell.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -12,8 +12,8 @@
  * THE SOFTWARE.
  */
 
-$app->get('/', 'GrahamCampbell\Meh\Controllers\HomeController::index');
+$app->get('/', 'Starbs\Meh\Controllers\HomeController::index');
 
-$app->post('/', 'GrahamCampbell\Meh\Controllers\ShortenController::index');
+$app->post('/', 'Starbs\Meh\Controllers\ShortenController::index');
 
-$app->get('/{id}', 'GrahamCampbell\Meh\Controllers\MainController::index');
+$app->get('/{id}', 'Starbs\Meh\Controllers\MainController::index');

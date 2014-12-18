@@ -1,7 +1,7 @@
 <?php
 
-/**
- * This file is part of Meh by Graham Campbell.
+/*
+ * This file is part of Starbs Meh by Graham Campbell.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -12,7 +12,9 @@
  * THE SOFTWARE.
  */
 
-namespace GrahamCampbell\Meh\Controllers;
+namespace Starbs\Meh\Controllers;
+
+use Starbs\Http\Controllers\AbstractController;
 
 class ShortenController extends AbstractController
 {
@@ -29,6 +31,10 @@ class ShortenController extends AbstractController
         }
 
         $short = $this->app['shortener']->short($url);
+
+        if ($this->input('sharex')) {
+            return $this->raw($short, 'text/plain');
+        }
 
         return $this->success(['message'  => 'URL Shortened Successfully', 'url' => $short]);
     }
