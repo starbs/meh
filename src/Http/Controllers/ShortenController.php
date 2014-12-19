@@ -12,12 +12,17 @@
  * THE SOFTWARE.
  */
 
-namespace Starbs\Meh\Controllers;
+namespace Starbs\Meh\Http\Controllers;
 
 use Starbs\Http\Controllers\AbstractController;
 
 class ShortenController extends AbstractController
 {
+    /**
+     * Do some clever things, then return a response.
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     protected function fire()
     {
         $url = $this->input('url');
@@ -30,7 +35,7 @@ class ShortenController extends AbstractController
             return $this->error(['message'  => 'The Provided URL Was Invalid'], 400);
         }
 
-        $short = $this->app['shortener']->short($url);
+        $short = $this->container->get('shortener')->short($url);
 
         if ($this->input('sharex')) {
             return $this->raw($short, 'text/plain');

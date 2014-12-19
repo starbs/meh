@@ -12,15 +12,20 @@
  * THE SOFTWARE.
  */
 
-namespace Starbs\Meh\Controllers;
+namespace Starbs\Meh\Http\Controllers;
 
 use Starbs\Http\Controllers\AbstractController;
 
 class MainController extends AbstractController
 {
+    /**
+     * Do some clever things, then return a response.
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     protected function fire()
     {
-        $url = $this->app['shortener']->full($this->args['id']);
+        $url = $this->container->get('shortener')->full($this->args['id']);
 
         if ($url) {
             return $this->redirect($url);

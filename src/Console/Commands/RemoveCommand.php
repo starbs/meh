@@ -71,7 +71,7 @@ class RemoveCommand extends AbstractCommand
      */
     protected function remove($id)
     {
-        if ($this->app['shortener']->remove($id)) {
+        if ($this->container->get('shortener')->remove($id)) {
             $this->output->writeln("<info>'$id' was removed from the database.</info>");
         } else {
             $this->output->writeln("<error>'$id' was not found in the database.</error>");
