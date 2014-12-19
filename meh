@@ -15,6 +15,6 @@
 
 require __DIR__.'/start.php';
 
-$cli = new Starbs\Meh\Console\Application($app);
+$cli = new Starbs\Meh\Console\Application($app->getContainer());
 
 $cli->run();
