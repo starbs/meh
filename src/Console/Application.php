@@ -17,7 +17,6 @@ namespace Starbs\Meh\Console;
 use Starbs\Console\AbstractApplication;
 use Starbs\Meh\Console\Commands\RemoveCommand;
 use Starbs\Meh\Console\Commands\ShortenCommand;
-use Symfony\Component\Console\Input\InputArgument;
 
 class Application extends AbstractApplication
 {
