@@ -12,7 +12,7 @@
  * THE SOFTWARE.
  */
 
-namespace Starbs\Meh\Commands;
+namespace Starbs\Meh\Console\Commands;
 
 use InvalidArgumentException;
 use Starbs\Console\Commands\AbstractCommand;
@@ -20,7 +20,18 @@ use Symfony\Component\Console\Input\InputArgument;
 
 class ShortenCommand extends AbstractCommand
 {
+    /**
+     * The command name.
+     *
+     * @var string
+     */
     protected $name = 'shorten';
+
+    /**
+     * The command description.
+     *
+     * @var string
+     */
     protected $description = 'Shorten the given urls';
 
     /**
@@ -51,6 +62,13 @@ class ShortenCommand extends AbstractCommand
         }
     }
 
+    /**
+     * Shorten the url and persist it to the db.
+     *
+     * @param string $url
+     *
+     * @return void
+     */
     protected function shorten($url)
     {
         if (filter_var($url, FILTER_VALIDATE_URL)) {
