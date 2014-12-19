@@ -12,8 +12,8 @@
  * THE SOFTWARE.
  */
 
-$app->get('/', 'Starbs\Meh\Controllers\HomeController::index');
+$app->get('/', 'Starbs\Meh\Http\Controllers\HomeController::index');
 
-$app->post('/', 'Starbs\Meh\Controllers\ShortenController::index');
+$app->post('/', 'Starbs\Meh\Http\Controllers\ShortenController::index');
 
-$app->get('/{id}', 'Starbs\Meh\Controllers\MainController::index');
+$app->get('/{id}', 'Starbs\Meh\Http\Controllers\MainController::index');
