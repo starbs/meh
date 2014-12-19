@@ -35,7 +35,7 @@ class ShortenController extends AbstractController
             return $this->error(['message'  => 'The Provided URL Was Invalid'], 400);
         }
 
-        $short = $this->conteiner->get('shortener')->short($url);
+        $short = $this->container->get('shortener')->short($url);
 
         if ($this->input('sharex')) {
             return $this->raw($short, 'text/plain');

@@ -25,7 +25,7 @@ class MainController extends AbstractController
      */
     protected function fire()
     {
-        $url = $this->conteiner->get('shortener')->full($this->args['id']);
+        $url = $this->container->get('shortener')->full($this->args['id']);
 
         if ($url) {
             return $this->redirect($url);
