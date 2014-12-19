@@ -72,7 +72,7 @@ class ShortenCommand extends AbstractCommand
     protected function shorten($url)
     {
         if (filter_var($url, FILTER_VALIDATE_URL)) {
-            $short = $this->app['shortener']->short($url);
+            $short = $this->container->get('shortener')->short($url);
             $this->output->writeln("<info>'$url' was sucessfully shortened to '$short'.</info>");
         } else {
             $this->output->writeln("<error>'$url' is not a valid url.</error>");
