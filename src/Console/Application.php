@@ -32,7 +32,7 @@ class Application extends AbstractApplication
      *
      * @var string
      */
-    protected $appVersion = '1.0.1';
+    protected $appVersion = '1.0.1-dev';
 
     /**
      * Setup the application.
