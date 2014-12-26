@@ -43,7 +43,7 @@ class ShortenCommand extends AbstractCommand
      */
     protected function configure()
     {
-        $this->addArgument('urls', InputArgument::IS_ARRAY, 'The urls to remove');
+        $this->addArgument('urls', InputArgument::IS_ARRAY, 'The urls to shorten');
     }
 
     /**
