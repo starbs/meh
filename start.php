@@ -19,6 +19,7 @@ $app['Proton\Application'] = $app;
 extract(require __DIR__.'/config/app.php');
 $app['debug'] = $debug;
 $app['url'] = $url;
+$app['blacklist'] = $blacklist;
 
 require __DIR__.'/src/database.php';
 require __DIR__.'/src/bindings.php';

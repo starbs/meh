@@ -16,6 +16,9 @@ namespace Starbs\Meh\Console\Commands;
 
 use InvalidArgumentException;
 use Starbs\Console\Commands\AbstractCommand;
+use Starbs\Meh\Exceptions\BlacklistedUrlException;
+use Starbs\Meh\Exceptions\InvalidUrlException;
+use Starbs\Meh\Exceptions\NoUrlException;
 use Symfony\Component\Console\Input\InputArgument;
 
 class ShortenCommand extends AbstractCommand
@@ -71,11 +74,16 @@ class ShortenCommand extends AbstractCommand
      */
     protected function shorten($url)
     {
-        if (filter_var($url, FILTER_VALIDATE_URL)) {
+        try {
+            $this->container->get('validator')->validate($url);
             $short = $this->container->get('shortener')->short($url);
             $this->output->writeln("<info>'$url' was sucessfully shortened to '$short'.</info>");
-        } else {
+        } catch (NoUrlException $e) {
+            $this->output->writeln("<error>'$url' cannot be empty.</error>");
+        } catch (InvalidUrlException $e) {
             $this->output->writeln("<error>'$url' is not a valid url.</error>");
+        } catch (BlacklistedUrlException $e) {
+            $this->output->writeln("<info>'$url' was sucessfully shortened to '$url'.</info>");
         }
     }
 }
