@@ -12,11 +12,18 @@
  * THE SOFTWARE.
  */
 
-return [
-    'debug' => false,
-    'url'   => 'https://s.starbs.net',
-    'blacklist' => [
-        '/:\/\/i.starbs.net/',
-        '/:\/\/s.starbs.net/',
-    ],
-];
+namespace Starbs\Meh\Exceptions;
+
+use Exception;
+
+class ValidationException extends Exception
+{
+    public function __construct($message)
+    {
+        if ($message) {
+            parent::__construct($message);
+        } else {
+            parent::__construct('Validation failed.');
+        }
+    }
+}

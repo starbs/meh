@@ -12,11 +12,12 @@
  * THE SOFTWARE.
  */
 
-return [
-    'debug' => false,
-    'url'   => 'https://s.starbs.net',
-    'blacklist' => [
-        '/:\/\/i.starbs.net/',
-        '/:\/\/s.starbs.net/',
-    ],
-];
+namespace Starbs\Meh\Exceptions;
+
+class BlacklistedUrlException extends ValidationException
+{
+    public function __construct()
+    {
+        parent::__construct('Validation failed: blacklisted url.');
+    }
+}

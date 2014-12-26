@@ -14,6 +14,9 @@
 
 namespace Starbs\Meh\Http\Controllers;
 
+use Starbs\Meh\Exceptions\BlacklistedUrlException;
+use Starbs\Meh\Exceptions\InvalidUrlException;
+use Starbs\Meh\Exceptions\NoUrlException;
 use Starbs\Http\Controllers\AbstractController;
 
 class ShortenController extends AbstractController
@@ -27,20 +30,32 @@ class ShortenController extends AbstractController
     {
         $url = $this->input('url');
 
-        if (!$url) {
-            return $this->error(['message'  => 'No URL Provided'], 400);
-        }
-
-        if (!filter_var($url, FILTER_VALIDATE_URL)) {
-            return $this->error(['message'  => 'The Provided URL Was Invalid'], 400);
+        try {
+            $this->container->get('validator')->validate($url);
+        } catch (NoUrlException $e) {
+            return $this->getShortenError('No URL Provided');
+        } catch (InvalidUrlException $e) {
+            return $this->getShortenError('The Provided URL Was Invalid');
+        } catch (BlacklistedUrlException $e) {
+            return $this->getShortenSuccess($url);
         }
 
         $short = $this->container->get('shortener')->short($url);
 
+        return $this->getShortenSuccess($short);
+    }
+
+    protected function getShortenSuccess($url)
+    {
         if ($this->input('sharex')) {
-            return $this->raw($short, 'text/plain');
+            return $this->raw($url, 'text/plain');
         }
 
-        return $this->success(['message'  => 'URL Shortened Successfully', 'url' => $short]);
+        return $this->success(['message' => 'URL Shortened Successfully', 'url' => $url]);
+    }
+
+    protected function getShortenError($message)
+    {
+        return $this->error(['message'  => $message], 400);
     }
 }

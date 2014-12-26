@@ -19,3 +19,7 @@ $app['hash'] = function () {
 $app['shortener'] = function () use ($app) {
     return new Starbs\Meh\Shortener($app['hash'], $app['url']);
 };
+
+$app['validator'] = function () use ($app) {
+    return new Starbs\Meh\Validator($app['blacklist']);
+};
