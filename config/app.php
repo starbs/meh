@@ -13,8 +13,8 @@
  */
 
 return [
-    'debug' => false,
-    'url'   => 'https://s.starbs.net',
+    'debug'     => false,
+    'url'       => 'https://s.starbs.net',
     'blacklist' => [
         '/:\/\/i.starbs.net/',
         '/:\/\/s.starbs.net/',

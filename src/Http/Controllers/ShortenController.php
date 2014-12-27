@@ -14,10 +14,10 @@
 
 namespace Starbs\Meh\Http\Controllers;
 
+use Starbs\Http\Controllers\AbstractController;
 use Starbs\Meh\Exceptions\BlacklistedUrlException;
 use Starbs\Meh\Exceptions\InvalidUrlException;
 use Starbs\Meh\Exceptions\NoUrlException;
-use Starbs\Http\Controllers\AbstractController;
 
 class ShortenController extends AbstractController
 {
