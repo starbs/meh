@@ -33,9 +33,9 @@ class ShortenController extends AbstractController
         try {
             $this->container->get('validator')->validate($url);
         } catch (NoUrlException $e) {
-            return $this->getShortenError('No URL Provided');
+            return $this->getShortenError('No URL provided');
         } catch (InvalidUrlException $e) {
-            return $this->getShortenError('The Provided URL Was Invalid');
+            return $this->getShortenError('The provided URL was invalid');
         } catch (BlacklistedUrlException $e) {
             return $this->getShortenSuccess($url);
         }
@@ -51,7 +51,7 @@ class ShortenController extends AbstractController
             return $this->raw($url, 'text/plain');
         }
 
-        return $this->success(['message' => 'URL Shortened Successfully', 'url' => $url]);
+        return $this->success(['message' => 'URL shortened successfully', 'url' => $url]);
     }
 
     protected function getShortenError($message)
